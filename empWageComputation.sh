@@ -2,25 +2,23 @@
 
 echo "Welcome to Employee Wage Program"
 
-
-isPresent=1
-isPartTime=2
-wagePerHour=20
-noOfHours=8
-noOfPartTimeHours=4
-checkAttendance=$((RANDOM%3))
-
-if [ $isPresent -eq $checkAttendance ]
-then
-   echo "Employee Present"
-   payment=$(($wagePerHour*$noOfHours))
-   echo "Payment is: "$payment
-elif [ $isPartTime -eq $checkAttendance ]
-then
-	echo "Employee is Part Time"
-	payment=$(($wagePerHour*$noOfPartTimeHours))
-	echo "Payment is: "$payment
-else
-   echo "Employee Absent"
-   echo "Payment is 0"
-fi
+isPartTime=1;
+isFullTime=2;
+empRatePerHr=20;
+empCheck=$((RANDOM%3));
+case $empCheck in
+ 	$isFullTime)
+		echo "Employee is Full Time"
+		empHrs=8;
+			;;
+	$isPartTime)
+		echo "Employee is Part Time"
+ 		empHrs=4;
+			;;
+		*)
+		echo "Emplyee is Absent"
+		empHrs=0;
+			;;
+esac
+salary=$(($empHrs*$empRatePerHr));
+echo "Salary is: "$salary
